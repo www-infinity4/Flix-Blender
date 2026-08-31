@@ -59,3 +59,6 @@ For edits: update app/page.tsx, app/cinema.css or lib/catalog.mjs, run `npm inst
 - [MDN: timeupdate event timing](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event)
 
 Review exact prints, restorations, scores and provider terms before commercial use. Online availability alone is not a reuse license. No ad-revenue contracts, wallet, token payout system or rights-clearance automation are implemented.
+
+## Sharing and unified wallet
+A shared wallet bar offers native sharing, copy-link fallback, and an X post composer. Confirmed sharing earns 0.1 StarCoin once per site per wallet. Opening a composer or copying a link alone earns nothing; manual confirmation is self-reported. Credits use the same browser-local wallet as StarQuest’s unified-wallet integration, not its separate cloud ledger. Pending claims retry on return. Social preview metadata is in index.html and the card is assets/share-preview-v1.png.

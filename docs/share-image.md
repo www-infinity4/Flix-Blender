@@ -1,0 +1,1 @@
+Built-in image-generation tool. Landscape social card for Flix Blender. Exact title: FLIX BLENDER. Supporting text: SILENT PICTURES. NEW COLLISIONS.. Original cinematic collage with film and vinyl imagery, bold typography and generous safe margins. Asset: assets/share-preview-v1.png.
