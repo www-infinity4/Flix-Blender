@@ -91,10 +91,11 @@ function Screening({selection}:{selection:number}){
  </div>
  <div className="now"><div><p className="kicker">{f.year} / {blend?"IN THE MIX":"NOW SHOWING"}</p><h2>{f.title}</h2></div>{blend&&<span className="countdown">{Math.ceil(remaining)}<small>SEC</small></span>}</div>
  {blend&&<div className="blend-settings"><label htmlFor="clip-length">CUT LENGTH</label><Select value={String(length)} onValueChange={s=>{video.current?.pause();boundary.current.locked=true;setLength(Number(s));}}><SelectTrigger id="clip-length" className="length-select"><SelectValue/></SelectTrigger><SelectContent>{[5,10,15].map(n=><SelectItem key={n} value={String(n)}>{n} seconds</SelectItem>)}</SelectContent></Select><span>5 FILMS · CONTINUOUS SOUNDTRACK</span></div>}
- <div className="controls"><Button onClick={()=>run?pause():start()}>{run?"Ⅱ Pause":started?"▶ Resume":"▶ Start "+(blend?"blend":"pairing")}</Button><Button variant="outline" onClick={()=>start(true)}>↻ Restart</Button>{blend&&<Button variant="outline" onClick={advance}>Next clip →</Button>}</div>
+ <div className="controls"><Button onClick={()=>run?pause():start()}>{run?"Ⅱ Pause":started?"▶ Resume":"▶ Start "+(blend?"blend":"pairing")}</Button><Button variant="outline" onClick={()=>start(true)}>↻ Re-sync</Button>{blend&&<Button variant="outline" onClick={advance}>Next clip →</Button>}</div>
  {error&&<div role="alert" className="notice">{error}<Button variant="outline" onClick={()=>{setError("");video.current?.load();}}>Retry film</Button></div>}
- <p className="screen-note">{blend?"The mix rotates through these four films plus Sherlock Jr. Cut length follows movie playback time, not buffering time. Seeking between sources can create pauses; the music stays on its own player.":f.note}</p>
+ <p className="screen-note">{blend?"The mix rotates through these films in short cuts. If an ad or delay shifts music against the pictures, Re-sync resets the blend and soundtrack together from their opening point.":f.note}</p>
  {!blend&&<p className="edition">{f.edition}</p>}
+ <p className="edition">YouTube advertising remains in YouTube’s player; Re-sync recovers the pairing without bypassing ads.</p>
  <a className="source" href={"https://archive.org/details/"+f.archive} target="_blank" rel="noreferrer">Current film source ↗</a>
  </div>
  <MusicDeck ref={deck} albumIndex={albumIndex} onIssue={pause}/>
@@ -106,6 +107,6 @@ export default function Home(){
  <div className="intro"><div><p className="kicker">THE SOUNDTRACK CINEMA / Infinity ®</p><h1>Watch the classics.<br/><em>Or cut them loose.</em></h1></div><p>Four full features. One five-film mix.<br/>No uploads. Just press play.</p></div>
  <nav className="program" aria-label="Choose full film or clip blender">{films.slice(0,4).map((f,i)=><Button key={f.title} variant="outline" className={selection===i?"feature selected":"feature"} aria-pressed={selection===i} onClick={()=>setSelection(i)}><span className="feature-number">0{i+1}</span><span><small>{f.year} / FULL FEATURE</small><strong>{f.title}</strong><small>{f.artist} · {f.album}</small></span></Button>)}<Button variant="outline" className={selection===4?"blend-card selected":"blend-card"} aria-pressed={selection===4} onClick={()=>setSelection(4)}><small>EXPERIMENTAL MODE</small><strong>THE BLENDER ↗</strong><span>5 films / 5 · 10 · 15 second cuts</span></Button></nav>
  <Screening key={selection} selection={selection}/>
- <footer><span>FLIX BLENDER / Infinity ®</span><p>Albums repeat. Music may require a separate tap. Ads and network delays can shift timing.<br/>Streamed clip playback, not an exported remix. Switching modes stops the previous players.</p></footer>
+ <footer><span>FLIX BLENDER / Infinity ®</span><p>Albums repeat. Music may require a separate tap. If ads or network delays shift timing, use Re-sync.<br/>Streamed clip playback, not an exported remix. Switching modes stops the previous players.</p></footer>
  </main>;
 }
