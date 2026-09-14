@@ -1,4 +1,3 @@
-import { build } from "esbuild";
 import postcss from "postcss";
 import tailwind from "@tailwindcss/postcss";
 import { readFile, writeFile } from "node:fs/promises";
@@ -6,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 const root = path.dirname(fileURLToPath(import.meta.url));
 process.chdir(root);
-await build({entryPoints:["entry.tsx"],outfile:"app.js",bundle:true,minify:true,platform:"browser",format:"iife",target:"es2020",jsx:"automatic",alias:{"@":root},define:{"process.env.NODE_ENV":'"production"'},legalComments:"eof"});
+await writeFile("app.js", await readFile("runtime.mjs", "utf8"));
 const result = await postcss([tailwind({base:root})]).process(await readFile("app/globals.css","utf8"),{from:path.join(root,"app/globals.css"),to:path.join(root,"styles.css")});
 await writeFile("styles.css",result.css+"\n"+await readFile("app/cinema.css","utf8"));
-console.log("Built portable app.js and styles.css; index.html uses relative paths.");
+console.log("Copied runtime.mjs to app.js and rebuilt styles.css.");
